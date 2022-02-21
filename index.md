@@ -36,7 +36,7 @@
 
       > 当前元素设置了浮动，就创建了BFC
 
-  	3. posiiton属性值不为static、relative；可以是absoult、fixed
+    	3. posiiton属性值不为static、relative；可以是absoult、fixed
 
   	4. display属性值为inline-block, table-cell, table-caption, flex, inline-flex
 
@@ -64,9 +64,65 @@
       </div>
       ```
 
-      因为**第二条：BFC区域是一个独立的区域，不会影响外面的元素**。
+      因为**BFC区域是一个独立的区域，不会影响外面的元素**。
 
-  	2. **举例2 BFC区域不与float区域重叠**
+     2. **举例2 BFC区域不与float区域重叠**
 
-      
-
+           ```html
+         <!DOCTYPE html>
+         <html lang="en">
+         <head>
+             <meta charset="UTF-8">
+             <title>Document</title>
+             <style>
+         
+                 .father-layout {
+                     background: pink;
+                 }
+         
+                 .father-layout .left {
+                     float: left;
+                     width: 100px;
+                     height: 100px;
+                     background: green;
+                 }
+         
+                 .father-layout .right {
+                     height: 150px;  /*右侧标准流里的元素，比左侧浮动的元素要高*/
+                     background: red;
+                 }
+         
+             </style>
+         </head>
+         <body>
+         
+         <section class="father-layout">
+             <div class="left">
+                 左侧
+             </div>
+             <div class="right">
+                 右侧
+             </div>
+         </section>
+         
+         </body>
+         </html>
+           ```
+   
+         效果如下：
+   
+         ![举例2](F:\summary\img\举例2.png)
+   
+         上图中，由于右侧标准流里的元素，比左侧浮动的元素要高，导致右侧有一部分会跑到左边的下面去。
+   
+         **如果要解决这个问题，可以将右侧的元素创建BFC**，因为**BFC区域不与`float box`区域重叠**。解决办法如下：（将right区域添加overflow属性）
+   
+         ```html
+         <div class="right" style="overflow: hidden">
+            右侧
+          </div>
+         ```
+   
+         
+   
+         ![](F:\summary\img\举例2_已解决.png)
