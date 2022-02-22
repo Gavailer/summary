@@ -185,6 +185,7 @@
 	* opacity：0，元素设置透明，不会影响页面布局，仍然可以触发绑定的事件
 	* visibility:hidden,不会影响页面布局，但不会触发绑定的事件
 	* display:none, 会影响页面布局
+	* z-index设置为负值
 
 ---
 
@@ -257,7 +258,38 @@ src是source的简写，目的是要把文件**下载**到html页面中去。
 
 ### Css 权重
 
-​	!important > 行内样式 > id选择器 > 类选择器 > 元素选择器 > 通配符 > 继承 > 浏览器默认属性  
+​	**权重排序**	!important > 行内样式 > id选择器 > 类选择器 > 元素选择器 > 通配符 > 继承 > 浏览器默认属性  
+
+---
+
+### flex布局
+
+Flex（Flexible Box）布局 称为 "弹性布局"，可以为网页的布局提供最大的灵活性，取代了往常的 浮动（float） 布局，并且任何一个容器都可以设置 Flex 布局。    
+
+> 注：设置 Flex 布局后，子元素的 Float 布局将失效     
+
+参考链接:[Flex 布局教程](https://juejin.im/post/5cdfc6ade51d4510a9276955)
+
+```
+主轴方向：水平排列（默认） | 水平反向排列 | 垂直排列 | 垂直反向排列
+flex-direction: row | row-reverse | column | column-reverse;
+
+换行：不换行（默认） | 换行 | 反向换行(第一行在最后面)
+flex-wrap: nowrap | wrap | wrap-reverse;
+
+flex-direction属性和flex-wrap属性的简写形式，默认值为row nowrap
+flex-flow: <flex-direction> || <flex-wrap>;
+
+主轴对齐方式：起点对齐（默认） | 终点对齐 | 居中对齐 | 两端对齐 | 分散对齐
+justify-content: flex-start | flex-end | center | space-between | space-around;
+
+交叉轴对齐方式：拉伸对齐（默认） | 起点对齐 | 终点对齐 | 居中对齐 | 第一行文字的基线对齐
+align-items: stretch | flex-start | flex-end | center | baseline;
+
+多根轴线对齐方式：拉伸对齐（默认） | 起点对齐 | 终点对齐 | 居中对齐 | 两端对齐 | 分散对齐
+align-content: stretch | flex-start | flex-end | center | space-between | space-around;
+
+```
 
 ---
 
