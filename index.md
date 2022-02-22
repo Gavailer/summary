@@ -13,6 +13,8 @@
   box-sizing: border-box;
 ```
 
+---
+
 ### BFC
 
 * #### BFC概念：
@@ -38,7 +40,7 @@
 
     	3. posiiton属性值不为static、relative；可以是absoult、fixed
 
-  	4. display属性值为inline-block, table-cell, table-caption, flex, inline-flex
+    	4. display属性值为inline-block, table-cell, table-caption, flex, inline-flex
 
 * #### BFC应用：
 
@@ -107,22 +109,155 @@
          
          </body>
          </html>
-           ```
-   
+         ```
+
          效果如下：
-   
+
          ![举例2](.\img\Css\example2.png)
-   
+
          上图中，由于右侧标准流里的元素，比左侧浮动的元素要高，导致右侧有一部分会跑到左边的下面去。
-   
+
          **如果要解决这个问题，可以将右侧的元素创建BFC**，因为**BFC区域不与`float box`区域重叠**。解决办法如下：（将right区域添加overflow属性）
-   
+
          ```html
          <div class="right" style="overflow: hidden">
             右侧
           </div>
          ```
-   
+
          
-   
+
          ![举例2_已解决](.\img\Css\example2_done.png)
+         
+   3. **举例3 清除浮动** 
+
+         结构如下
+
+         ```html
+         <!DOCTYPE html>
+         <html lang="en">
+         <head>
+             <meta charset="UTF-8">
+             <title>Document</title>
+             <style>
+         
+                 .father {
+                     background: pink;
+                 }
+         
+                 .son {
+                     float: left;
+                     background: green;
+                 }
+         
+             </style>
+         </head>
+         <body>
+         
+         <section class="father">
+             <div class="son">
+                 Hello word
+             </div>
+         
+         </section>
+         </body>
+         </html>
+         ```
+
+         效果如下：
+
+         ![](.\img\Css\example3.png)
+
+         **原因：** 子元素浮动，但父元素没有设置高度，导致看不到父元素的背景色（父元素高度为0）
+
+         > 有高度的盒子，才能关住浮动
+
+         **解决方式：**
+
+         ​	方法1：给父元素添加高度
+
+         ​	方法2：给父元素添加overflow：hidden（**计算BFC高度时，子元素的float box区域也会参与计算**）
+
+---
+
+### 元素隐藏的方法
+
+	* opacity：0，元素设置透明，不会影响页面布局，仍然可以触发绑定的事件
+	* visibility:hidden,不会影响页面布局，但不会触发绑定的事件
+	* display:none, 会影响页面布局
+
+---
+
+### 重绘和回流
+
+	* **重绘：**当元素样式的改变不影响布局时，浏览器将使用重绘对元素进行更新，此时由于只需要UI层面的重新像素绘制
+	* **回流：** 当元素的尺寸、结构或触发某些属性时，浏览器会重新渲染页面，称为回流。
+
+**回流触发情况：**
+
+ * 页面首次加载
+
+ * 浏览器窗口尺寸改变
+
+ * 元素尺寸、内容、位置发生改变
+
+ * 元素字体样式改变
+
+ * 添加或删除dom节点
+
+ * 触发css伪类（如：hover）
+
+ * 查询某些属性或调用某些方法
+
+   > offsetWidth、offsetHeight、offsetTop、offsetLeft
+   > scrollWidth、scrollHeight、scrollTop、scrollLeft
+   > getComputedStyle()
+   > getBoundingClientRect()
+   > scrollTo()
+
+**回流必定触发重绘，重绘不一定触发回流。重绘的开销较小，回流的代价较高**
+
+---
+
+### href 和 src 的区别
+
+href是Hypertext Reference的简写，表示超文本**引用**，指向网络资源所在位置。  
+常见场景:  
+
+```
+<a href="http://www.baidu.com"></a> 
+<link type="text/css" rel="stylesheet" href="common.css">
+```
+
+src是source的简写，目的是要把文件**下载**到html页面中去。  
+
+常见场景:
+
+```
+<img src="img/girl.jpg"> 
+<iframe src="top.html"> 
+<script src="show.js">
+```
+
+两者作用：
+
+	*	href用于当前文档和引用资源之间建立联系
+	*	src用于替换当前内容
+
+----
+
+### Css中link和@import 的区别是什么
+
+	* link属于html标签，而@import是Css提供的方法
+	* 页面加载时，link会同时被加载，@import引用的css会等到页面加载完再执行
+	* @import只有在ie5以上才能被识别，link无兼容问题
+	* link方式引用的样式的权重 高于 @import引用的样式
+
+---
+
+### Css 权重
+
+​	!important > 行内样式 > id选择器 > 类选择器 > 元素选择器 > 通配符 > 继承 > 浏览器默认属性  
+
+---
+
