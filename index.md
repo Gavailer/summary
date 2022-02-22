@@ -113,7 +113,7 @@
 
          效果如下：
 
-         ![举例2](.\img\Css\example2.png)
+         ![example2.png](https://s2.loli.net/2022/02/22/4q6b8VKWugfOrLI.png)
 
          上图中，由于右侧标准流里的元素，比左侧浮动的元素要高，导致右侧有一部分会跑到左边的下面去。
 
@@ -127,7 +127,7 @@
 
          
 
-         ![举例2_已解决](.\img\Css\example2_done.png)
+         ![example2_done.png](https://s2.loli.net/2022/02/22/UI8hGWqMQTayRos.png)
          
    3. **举例3 清除浮动** 
 
@@ -166,7 +166,7 @@
 
          效果如下：
 
-         ![](.\img\Css\example3.png)
+         ![example3.png](https://s2.loli.net/2022/02/22/wQDbHE4GIB1CVTy.png)
 
          **原因：** 子元素浮动，但父元素没有设置高度，导致看不到父元素的背景色（父元素高度为0）
 
