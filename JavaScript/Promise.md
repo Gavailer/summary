@@ -48,7 +48,7 @@ let promise = new Promise((resolve,reject)=>{
 
     promise.then(data=>{
         // success
-        console('resolved', data)
+        console.log('resolved', data)
     }).catch(err=>{
         // failed
         console.log('rejected',err)
